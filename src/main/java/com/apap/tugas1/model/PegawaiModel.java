@@ -40,7 +40,7 @@ public class PegawaiModel implements Serializable{
 	
 	@NotNull
 	@Size(max = 255)
-	@Column(name = "nip", nullable = false, unique = true)
+	@Column(name = "NIP", nullable = false, unique = true)
 	private String nip;
 	
 	@NotNull
@@ -71,7 +71,7 @@ public class PegawaiModel implements Serializable{
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "jabatan_pegawai", joinColumns = { @JoinColumn(name = "id_pegawai", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "id_jabatan", referencedColumnName = "id") })
 	private Set<JabatanModel> jabatan = new HashSet<JabatanModel>();
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -136,5 +136,21 @@ public class PegawaiModel implements Serializable{
 		this.jabatan = jabatan;
 	}
 	
+	public Integer getGaji() {
+		InstansiModel instansiPegawai = this.getInstansi();
+		Set<JabatanModel> setJabatan = this.getJabatan();
+		
+		Double gajiPegawai = 0.0;
+		for (JabatanModel jabatan : setJabatan) {
+			Double gajiPokok = jabatan.getGajiPokok();
+			Double persenGaji = instansiPegawai.getProvinsi().getPresentaseTunjangan();
+			Double hasilHitungGaji = (gajiPokok + (persenGaji * gajiPokok / 100));
+			if (hasilHitungGaji > gajiPegawai) {
+				gajiPegawai = hasilHitungGaji;
+			}
+		}
+		
+		return gajiPegawai.intValue();
+	}
 	
 }
