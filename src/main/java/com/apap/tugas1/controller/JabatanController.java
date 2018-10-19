@@ -50,4 +50,19 @@ public class JabatanController {
 		model.addAttribute("headerTitle", "Tambah Jabatan Berhasil!!");
 		return "tambahJabatanBerhasil";
 	}
+	
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
+	public String ubahJabatan (@RequestParam(value = "idJabatan", required = true) Long idJabatan, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanById(idJabatan).get();
+		model.addAttribute("jabatan", jabatan);
+		model.addAttribute("headerTitle", "Ubah Jabatan");
+		return "ubahJabatan";
+	}
+	
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
+	public String ubahJabatan (Model model, @ModelAttribute JabatanModel jabatan) {
+		jabatanService.update(jabatan.getId(), jabatan);
+		model.addAttribute("headerTitle", "Ubah Jabatan Berhasil!!");
+		return "ubahJabatanBerhasil";
+	}
 }

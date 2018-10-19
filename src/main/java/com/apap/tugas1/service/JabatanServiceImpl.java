@@ -34,4 +34,13 @@ public class JabatanServiceImpl implements JabatanService {
 		jabatanDb.save(jabatan);		
 	}
 
+	@Override
+	public void update(Long id, JabatanModel jabatanBaru) {
+		JabatanModel jabatanLama = jabatanDb.findById(id).get();
+		jabatanLama.setNama(jabatanBaru.getNama());
+		jabatanLama.setDeskripsi(jabatanBaru.getDeskripsi());
+		jabatanLama.setGajiPokok(jabatanBaru.getGajiPokok());
+		
+	}
+
 }
