@@ -6,6 +6,7 @@
 	
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
+		
 		<h3>Sistem Informasi Kepegawaian</h3>
 		<p>Selamat datang di Sistem Informasi Kepegawaian</p>
 
@@ -13,6 +14,20 @@
 		<form action="/pegawai" method="get">
 			<p>Masukkan Nomor Induk Pegawai</p>
 			<input type="text" name="nip">
+			<br>
+			<input type="submit" value="Lihat">
+		</form>
+		<br>
+		
+		<h2>Lihat Detail Jabatan</h2>
+		<form action="/jabatan/view" id="jabatanForm" method="get">
+			<p>Pilih Jabatan</p>
+			<select required="required" name="idJabatan" form="jabatanForm">
+				<option disabled="disabled" selected="selected" >Pilih Jabatan</option>
+				<span th:each="jabatan : ${listJabatan}">
+					<option th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+				</span>
+			</select>
 			<br>
 			<input type="submit" value="Lihat">
 		</form>

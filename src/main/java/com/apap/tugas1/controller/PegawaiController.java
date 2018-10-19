@@ -11,28 +11,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.apap.tugas1.model.InstansiModel;
 import com.apap.tugas1.model.JabatanModel;
 import com.apap.tugas1.model.PegawaiModel;
-//import com.apap.tugas1.service.InstansiService;
-//import com.apap.tugas1.service.JabatanService;
+import com.apap.tugas1.service.JabatanService;
 import com.apap.tugas1.service.PegawaiService;
+//import com.apap.tugas1.service.InstansiService;
 //import com.apap.tugas1.service.ProvinsiService;
 
 @Controller
 public class PegawaiController {
 
 	@Autowired
-	private PegawaiService pegawaiService;
+	private PegawaiService pegawaiService;	
+	
+	@Autowired
+	private JabatanService jabatanService;
 	
 //	@Autowired
 //	private InstansiService instansiService;
 //	
 //	@Autowired
 //	private ProvinsiService provinsiService;
-//	
-//	@Autowired
-//	private JabatanService jabatanService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
+		Set<JabatanModel> listJabatan = jabatanService.getAllJabatan();
+		model.addAttribute("listJabatan", listJabatan);
+		
 		model.addAttribute("headerTitle", "Home");
 		return "index";
 	}
