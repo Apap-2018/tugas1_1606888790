@@ -1,5 +1,7 @@
 package com.apap.tugas1.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,5 +79,13 @@ public class JabatanController {
 			return "deleteJabatanGagal";
 		}
 		
+	}
+	
+	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+	public String ubahJabatan (Model model) {
+		Set<JabatanModel> listJabatan = jabatanService.getAllJabatan();
+		model.addAttribute("listJabatan", listJabatan);
+		model.addAttribute("headerTitle", "View Semua Jabatan");
+		return "viewallJabatan";
 	}
 }
