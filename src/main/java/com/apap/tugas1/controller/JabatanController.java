@@ -65,4 +65,17 @@ public class JabatanController {
 		model.addAttribute("headerTitle", "Ubah Jabatan Berhasil!!");
 		return "ubahJabatanBerhasil";
 	}
+	
+	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.POST)
+	public String hapusJabatan (Model model, @RequestParam(value = "idJabatan", required = true) Long idJabatan) {
+		try {
+			jabatanService.deleteById(idJabatan);
+			model.addAttribute("headerTitle", "Hapus Jabatan Sukses!!");
+			return "deleteJabatanSukses";
+		}
+		catch (Exception limaRatus) {
+			return "deleteJabatanGagal";
+		}
+		
+	}
 }

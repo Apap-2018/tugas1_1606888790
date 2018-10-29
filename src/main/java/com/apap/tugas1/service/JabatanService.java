@@ -15,4 +15,6 @@ public interface JabatanService {
 
 	void update(Long id, JabatanModel jabatanBaru);
 
+	void deleteById(Long id);
+
 }

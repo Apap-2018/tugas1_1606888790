@@ -43,4 +43,9 @@ public class JabatanServiceImpl implements JabatanService {
 		
 	}
 
+	@Override
+	public void deleteById(Long id) {
+		jabatanDb.deleteById(id);
+	}
+
 }

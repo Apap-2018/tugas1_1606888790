@@ -9,7 +9,7 @@
 		<h3 th:text="'Detail Jabtatan ' + ${jabatan.nama}"></h3>
 		<table>
 			<tr>
-				<td width="200" height="50">Nama</td>
+				<td width="300" height="50">Nama</td>
 				<td th:text="${jabatan.nama}"></td>
 			</tr>
 			<tr>
@@ -22,17 +22,16 @@
 			</tr>
 		</table>
 		
-	
 		<div>
 			<form action="/jabatan/ubah" id="ubahJabatan" method="get">
 				<input type="hidden" name="idJabatan" th:value="${jabatan.id}"/>
 				<input type="submit" value="Ubah">
 			</form>
-			<!-- 	
+		 	
 			<form action="/jabatan/hapus" id="ubahJabatan" method="post">
 				<input type="hidden" name="idJabatan" th:value="${jabatan.id}"/>
 				<input type="submit" value="Hapus">
-			</form> -->
+			</form> 
 		</div>
 		
 	</body>
