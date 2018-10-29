@@ -33,5 +33,18 @@
 		</form>
 		<br>
 		
+		<h2>Lihat Pegawai Termuda dan Tertua</h2>
+		<form action="/pegawai/termuda-tertua" id="tuaMudaForm" method="get">
+			<p>Pilih Instansi</p>
+			<select required="required" name="idInstansi" form="tuaMudaForm">
+				<option disabled="disabled" selected="selected" >Pilih Instansi</option>
+				<span th:each="instansi : ${listInstansi}">
+					<option th:value="${instansi.id}" th:text="${instansi.nama} + ' - ' + ${instansi.provinsi.nama}"></option>
+				</span>
+			</select>
+			<br>
+			<input type="submit" value="Lihat">
+		</form>
+		<br>
 	</body>
 </html>
